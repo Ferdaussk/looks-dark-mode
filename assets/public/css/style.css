@@ -7,10 +7,6 @@ body {
   -webkit-transition: background-color 800ms ease;
   transition: background-color 800ms ease;
 }
-body.dark {
-  background-color: #222;
-  color: #eaeaea;
-}
 .ldarkm_dark_root ul {
   list-style: none;
   padding: 0;

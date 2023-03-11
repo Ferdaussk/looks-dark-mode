@@ -66,37 +66,33 @@ class LdARkMWidget extends Widget_Base{
 			]
 		);
 		$this->add_control(
-			'ldarkm_default_color_type',
+			'ldarkm_custom_color',
 			[
-				'label' => esc_html__( 'Select Action', 'looks-dark-mode' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'dark',
-				'options' => [
-					'dark' => esc_html__( 'Dark', 'looks-dark-mode' ),
-					'light' => esc_html__( 'Light', 'looks-dark-mode' ),
+				'label' => __( 'Custom Color', 'looks-dark-mode' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#000',
+				'selectors' => [
+					'body.dark' => 'background-color: {{VALUE}};',
 				],
-				'prefix_class' => 'the_clss_name_',
 			]
 		);
-		$this->add_control(
-			'my_switcher_control',
-			[
-				'label' => __( 'The Switcher', 'looks-dark-mode' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'On', 'looks-dark-mode' ),
-				'label_off' => __( 'Off', 'looks-dark-mode' ),
-				'return_value' => 'yes',
-				'default' => 'no',
-			]
-		);
-	
 		$this->add_control(
 			'ldarkm_color',
 			[
 				'label' => esc_html__( 'Text Color', 'looks-dark-mode' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} body.dark' => 'color: {{VALUE}} !important',
+					'{{WRAPPER}} .button_action' => 'color: {{VALUE}} !important',
+				],
+			]
+		);
+		$this->add_control(
+			'ldarkm_icon_color',
+			[
+				'label' => esc_html__( 'Icon Color', 'looks-dark-mode' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .button_action i, {{WRAPPER}} .button_action svg' => 'color: {{VALUE}} !important',
 				],
 			]
 		);
@@ -179,7 +175,6 @@ class LdARkMWidget extends Widget_Base{
 		echo '<div class="ldarkm_common_style ldarkm_'.$settings['ldarkm_presets_style'].'">';
 		?>
 			<nav class="ldarkm_dark_root">
-				<div class="test_class">Name Ferdaussk from best</div>
 				<ul>
 					<li>
 						<div class="dark-button button_action"><?php echo $settings['ldarkm_main_title_dark']; 
