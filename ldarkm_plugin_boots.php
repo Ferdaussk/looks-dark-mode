@@ -57,7 +57,7 @@ class ClassLdARkMBoots {
 	}
 
 	public function ldarkm_all_assets_for_the_public(){
-		wp_enqueue_script('jalsdja-dad','https://code.jquery.com/jquery-3.5.1.slim.min.js', ['jquery'], '1.0', true);
+		wp_enqueue_script('ldarkm-the-jquery','https://code.jquery.com/jquery-3.5.1.slim.min.js', ['jquery'], '1.0', true);
 		$all_css_js_file = array(
 			'ldarkm-dark-mode-style-decorating' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/css/decorating.css'),
 			'ldarkm-dark-mode-style' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/css/style.css'),
