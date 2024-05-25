@@ -57,17 +57,30 @@ class ClassLdARkMBoots {
 	}
 
 	public function ldarkm_all_assets_for_the_public(){
-		wp_enqueue_script('ldarkm-the-jquery','https://code.jquery.com/jquery-3.5.1.slim.min.js', ['jquery'], '1.0', true);
-		$all_css_js_file = array(
-			'ldarkm-dark-mode-style-decorating' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/css/decorating.css'),
-			'ldarkm-dark-mode-style' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/css/style.css'),
+		wp_enqueue_style('ldarkm-dark-mode',plugin_dir_url( __FILE__ ).'assets/drkm/ep-dark-mode.css', null, '1.0', 'all');
+		wp_enqueue_style('ldarkm-dark-mode.rtl',plugin_dir_url( __FILE__ ).'assets/drkm/ep-dark-mode.rtl.css', null, '1.0', 'all');
+		wp_enqueue_style('ldarkm-styles',plugin_dir_url( __FILE__ ).'assets/drkm/ep-styles.css', null, '1.0', 'all');
+		wp_enqueue_style('ldarkm-styles.rtl',plugin_dir_url( __FILE__ ).'assets/drkm/ep-styles.rtl.css', null, '1.0', 'all');
 
-			'ldarkm-dark-mode-js' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/js/script.js'),
-		);
-		foreach($all_css_js_file as $handle => $fileinfo){
-			wp_enqueue_style( $handle, $fileinfo['ldarkm_path_define'], null, '1.0', 'all');
-			wp_enqueue_script( $handle, $fileinfo['ldarkm_path_define'], ['jquery'], '1.0', true);
-		}
+		wp_enqueue_script('ldarkm-dark-mode',plugin_dir_url( __FILE__ ).'assets/drkm/ep-dark-mode.js', ['jquery'], '1.0', true);
+		wp_enqueue_script('ldarkm-dark-mode.min',plugin_dir_url( __FILE__ ).'assets/drkm/ep-dark-mode.min.js', ['jquery'], '1.0', true);
+		wp_enqueue_script('ldarkm-scripts',plugin_dir_url( __FILE__ ).'assets/drkm/ep-scripts.js', ['jquery'], '1.0', true);
+		wp_enqueue_script('ldarkm-scripts.min',plugin_dir_url( __FILE__ ).'assets/drkm/ep-scripts.min.js', ['jquery'], '1.0', true);
+//http://localhost/ferdaussk/assets/drkm/ep-dark-mode.js
+
+
+
+		// wp_enqueue_script('ldarkm-the-jquery','https://code.jquery.com/jquery-3.5.1.slim.min.js', ['jquery'], '1.0', true);
+		// $all_css_js_file = array(
+		// 	'ldarkm-dark-mode-style-decorating' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/css/decorating.css'),
+		// 	'ldarkm-dark-mode-style' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/css/style.css'),
+
+		// 	'ldarkm-dark-mode-js' => array('ldarkm_path_define'=>LDARKM_ASFSK_ASSETS_PUBLIC_DIR_FILE . '/js/script.js'),
+		// );
+		// foreach($all_css_js_file as $handle => $fileinfo){
+		// 	wp_enqueue_style( $handle, $fileinfo['ldarkm_path_define'], null, '1.0', 'all');
+		// 	wp_enqueue_script( $handle, $fileinfo['ldarkm_path_define'], ['jquery'], '1.0', true);
+		// }
 	}
 
 	public function ldarkm_all_assets_for_elementor_editor_admin(){

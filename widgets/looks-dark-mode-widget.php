@@ -3,6 +3,8 @@ namespace LdARkM\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
+use Elementor\Icons_Manager;
+use Elementor\Group_Control_Border;
 
 if (!defined('ABSPATH')){ 
 	exit; 
@@ -26,169 +28,429 @@ class LdARkMWidget extends Widget_Base{
 		return ['social', 'shares', 'social-share', 'social-media', 'media', 'plugins', 'developer', 'elementor'];
 	}
 
-	protected function register_controls() {
+	
+	// public function ep_is_edit_mode() {
+	// 	return false;
+	// }
 
-		$this->start_controls_section(
-			'section_ldarkms',
-			array(
-				'label' => esc_html__( 'Content Settings', 'looks-dark-mode' ),
-			)
-		);
-		$this->add_control(
-			'ldarkm_presets_style',
-			[
-				'label' => esc_html__( 'Select Style', 'looks-dark-mode' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'style1',
-				'options' => [
-					'style1' => esc_html__( 'Style 1', 'looks-dark-mode' ),
-					'style2' => esc_html__( 'Style 2', 'looks-dark-mode' ),
-					'style3' => esc_html__( 'Style 3', 'looks-dark-mode' ),
-					'style4' => esc_html__( 'Style 4', 'looks-dark-mode' ),
-					'style5' => esc_html__( 'Style 5', 'looks-dark-mode' ),
-					'style6' => esc_html__( 'Style 6', 'looks-dark-mode' ),
-					'style7' => esc_html__( 'Style 7', 'looks-dark-mode' ),
-					'style8' => esc_html__( 'Style 8', 'looks-dark-mode' ),
-					'style9' => esc_html__( 'Style 9', 'looks-dark-mode' ),
-					'style10' => esc_html__( 'Style 10', 'looks-dark-mode' ),
-					'style11' => esc_html__( 'Style 11', 'looks-dark-mode' ),
-					'style12' => esc_html__( 'Style 12', 'looks-dark-mode' ),
-					'style13' => esc_html__( 'Style 13', 'looks-dark-mode' ),
-					'style14' => esc_html__( 'Style 14', 'looks-dark-mode' ),
-					'style15' => esc_html__( 'Style 15', 'looks-dark-mode' ),
-					'style16' => esc_html__( 'Style 16', 'looks-dark-mode' ),
-					'style17' => esc_html__( 'Style 17', 'looks-dark-mode' ),
-					'style18' => esc_html__( 'Style 18', 'looks-dark-mode' ),
-					'style19' => esc_html__( 'Style 19', 'looks-dark-mode' ),
-					'style20' => esc_html__( 'Style 20', 'looks-dark-mode' ),
-					'style21' => esc_html__( 'Style 21', 'looks-dark-mode' ),
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_custom_color',
-			[
-				'label' => __( 'Custom Color', 'looks-dark-mode' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '#000',
-				'selectors' => [
-					'body.dark' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_color',
-			[
-				'label' => esc_html__( 'Text Color', 'looks-dark-mode' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .button_action' => 'color: {{VALUE}} !important',
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_icon_color',
-			[
-				'label' => esc_html__( 'Icon Color', 'looks-dark-mode' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .button_action i, {{WRAPPER}} .button_action svg' => 'color: {{VALUE}} !important',
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_types',
-			[
-				'label' => esc_html__( 'Select Type', 'looks-dark-mode' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'both',
-				'options' => [
-					'both' => esc_html__( 'Both', 'looks-dark-mode' ),
-					'text' => esc_html__( 'Text', 'looks-dark-mode' ),
-					'icon' => esc_html__( 'Icon', 'looks-dark-mode' ),
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_main_title_dark',
-			[
-				'label' => esc_html__( 'Dark', 'looks-dark-mode' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Dark' , 'looks-dark-mode' ),
-				'dynamic'     => [
-					'active' => true,
-				],
-				'label_block' => true,
-				'condition' => [
-					'ldarkm_types' => ['text', 'both'],
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_main_title_light',
-			[
-				'label' => esc_html__( 'Light', 'looks-dark-mode' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Light' , 'looks-dark-mode' ),
-				'dynamic'     => [
-					'active' => true,
-				],
-				'label_block' => true,
-				'condition' => [
-					'ldarkm_types' => ['text', 'both'],
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_dark_icons',
-			[
-				'label' => esc_html__( 'Dark Icon', 'looks-dark-mode' ),
-				'type' => Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'fas fa-moon',
-					'library' => 'fa-solid',
-				],
-				'condition' => [
-					'ldarkm_types' => ['icon', 'both'],
-				],
-			]
-		);
-		$this->add_control(
-			'ldarkm_light_icons',
-			[
-				'label' => esc_html__( 'Light Icon', 'looks-dark-mode' ),
-				'type' => Controls_Manager::ICONS,
-				'default' => [
-					'value' => 'far fa-moon',
-					'library' => 'fa-solid',
-				],
-				'condition' => [
-					'ldarkm_types' => ['icon', 'both'],
-				],
-			]
-		);
+
+    // public function get_style_depends() {
+    //     if ($this->ep_is_edit_mode()) {
+    //         return ['ep-styles'];
+    //     } else {
+    //         return ['ep-dark-mode'];
+    //     }
+    // }
+
+    // public function get_script_depends() {
+    //     if ($this->ep_is_edit_mode()) {
+    //         return ['darkmode', 'ep-scripts'];
+    //     } else {
+    //         return ['darkmode', 'ep-dark-mode'];
+    //     }
+    // }
+
+    // public function get_custom_help_url() {
+	// 	return 'https://youtu.be/nuYa-0sWFxU';
+	// }
+
+    protected function register_controls(){
+
+        $this->start_controls_section(
+            'section_layout',
+            [
+                'label' => esc_html__('Dark Mode', 'bdthemes-dark-mode'),
+            ]
+        );
+
+        $this->add_control(
+            'default_mode',
+            [
+                'label'                => esc_html__('Default Mode', 'bdthemes-element-pack'),
+                'type'                 => Controls_Manager::SELECT,
+                'default'              => 'light',
+                'options'              => [
+                    'light'      => esc_html__('Light', 'bdthemes-element-pack'),
+                    'dark'     => esc_html__('Dark', 'bdthemes-element-pack'),
+                ],
+                'frontend_available' => true,
+                'render_type'        => 'none'
+            ]
+        );
+
+        $this->add_control(
+            'toggle_position',
+            [
+                'label'                => esc_html__('Toggle Position', 'bdthemes-element-pack'),
+                'type'                 => Controls_Manager::SELECT,
+                'default'              => 'bottom-right',
+                'options'              => [
+                    'top-left'      => esc_html__('Top Left', 'bdthemes-element-pack'),
+                    'top-right'     => esc_html__('Top Right', 'bdthemes-element-pack'),
+                    'bottom-left'   => esc_html__('Bottom Left', 'bdthemes-element-pack'),
+                    'bottom-right'  => esc_html__('Bottom Right', 'bdthemes-element-pack'),
+                ],
+                // 'selectors_dictionary' => [
+                //     'top-left'      => 'top:var(--bdt-vertical-offset, 32px); left:var(--bdt-horizontal-offset) !important; bottom:unset; right:unset !important;',
+                //     'top-right'     => 'top:var(--bdt-vertical-offset, 32px); right:var(--bdt-horizontal-offset) !important; bottom:unset; left:unset !important;',
+                //     'bottom-left'   => 'bottom:var(--bdt-vertical-offset, 32px); left:var(--bdt-horizontal-offset, 32px); top:unset; right:unset;',
+                //     'bottom-right'  => 'bottom:var(--bdt-vertical-offset, 32px); right:var(--bdt-horizontal-offset, 32px); top:unset; left:unset;',
+                // ],
+                // 'selectors'            => [
+                //     '.darkmode-toggle, .darkmode-layer' => '{{VALUE}}',
+                // ],
+                'frontend_available' => true,
+                'render_type'        => 'none'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_horizontal_offset',
+            [
+                'label' => __('Horizontal Offset', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '.darkmode-toggle, .darkmode-layer' => '--bdt-horizontal-offset: {{SIZE}}{{UNIT}};',
+                ],
+                // 'render_type'        => 'none',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_vertical_offset',
+            [
+                'label' => __('Vertical Offset', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '.darkmode-toggle, .darkmode-layer' => '--bdt-vertical-offset: {{SIZE}}{{UNIT}};',
+                ],
+                // 'render_type'        => 'none'
+            ]
+        );
+
+        $this->add_control(
+            'time',
+            [
+                'label' => esc_html__('Animation Time (ms)', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SLIDER,
+                //'size_units' => 's',
+                'range' => [
+                    'px' => [
+                        'min' => 100,
+                        'max' => 1500,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 500,
+                ],
+                'frontend_available' => true,
+                'render_type'        => 'none'
+            ]
+        );
+
+        $this->add_control(
+            'ignore_element',
+            [
+                'label'       => __('Ignore Elements', 'bdthemes-element-pack'),
+                'type'        => Controls_Manager::TEXTAREA,
+                'placeholder' => '.my-image, .my-widget',
+                'dynamic'     => [
+                    'active' => true,
+                ],
+                'frontend_available' => true,
+                'render_type'        => 'none'
+            ]
+        );
+
+	    $this->add_control(
+		    'ignore_element_notes',
+		    [
+			    'type' => Controls_Manager::RAW_HTML,
+			    'raw' => __( 'Note: Image can invert some cases so you need use the class for that image element. If you will add classes they will be ignore. Some cases Background image not support in dark mode effect. So don\'t blame us for it. But it\'s possible to solve by Ignore Elements.', 'bdthemes-element-pack' ),
+			    'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+
+		    ]
+	    );
+
+        $this->add_control(
+            'saveInCookies',
+            [
+                'label' => esc_html__('Save User Action', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SWITCHER,
+                'return_value' => 'yes',
+                'frontend_available' => true,
+            ]
+        );
+
+        $this->add_control(
+		    'save_cookies_notes',
+		    [
+			    'type' => Controls_Manager::RAW_HTML,
+			    'raw' => __( 'Note: If you will activate this option, this will save user action on the browser. Example:- If the user pressed Dark/Light Mode, this mode will always activate on the user browsers. Cookie will not work on Elementor Editor.', 'bdthemes-element-pack' ),
+			    'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+
+		    ]
+	    );
+
+        $this->add_control(
+            'autoMatchOsTheme',
+            [
+                'label' => esc_html__('Auto Match On Theme', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SWITCHER,
+                'return_value' => 'yes',
+                'frontend_available' => true,
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style',
+            [
+                'label' => esc_html__('Dark Mode', 'bdthemes-color-mode'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_dark_mode_style');
+
+        $this->start_controls_tab(
+            'tab_day_mode_normal',
+            [
+                'label' => __('Day Mode', 'bdthemes-element-pack'),
+            ]
+        );
+
+        $this->add_control(
+            'default_background',
+            [
+                'label' => esc_html__('Background', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'frontend_available' => true,
+            ]
+        );
+
+        // $this->add_control(
+        //     'icon_color_day',
+        //     [
+        //         'label' => esc_html__('Icon Color', 'bdthemes-element-pack'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'default' => '#fff',
+        //         'selectors' => [
+        //             '.darkmode-toggle i' => 'color: {{VALUE}}',
+        //         ],
+        //     ]
+        // );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_dark_mode_normal',
+            [
+                'label' => __('Dark Mode', 'bdthemes-element-pack'),
+            ]
+        );
+
+        $this->add_control(
+            'mix_color',
+            [
+                'label' => esc_html__('Content Mix Color', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'frontend_available' => true,
+            ]
+        );
+
+        // $this->add_control(
+        //     'icon_color_dark',
+        //     [
+        //         'label' => esc_html__('Icon Color', 'bdthemes-element-pack'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'default' => '#000',
+        //         'selectors' => [
+        //             '.darkmode-toggle.darkmode-toggle--white i' => 'color: {{VALUE}}',
+        //         ],
+        //     ]
+        // );
+
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'toggle_button_style',
+            [
+                'label' => esc_html__('Toggle Button', 'bdthemes-color-mode'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'icon_size',
+            [
+                'label' => esc_html__('Icon Size', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 18,
+                ],
+                'selectors' => [
+                    '.darkmode-toggle' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'icon_button_width',
+            [
+                'label' => __('Toggle Size', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 54,
+                ],
+                'selectors' => [
+                    '.darkmode-toggle, .darkmode-layer:not(.darkmode-layer--expanded)' => 'height: {{SIZE}}{{UNIT}} !important; width: {{SIZE}}{{UNIT}} !important;',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'icon_border',
+                'label' => __('Border', 'bdthemes-element-pack'),
+                'selector' => '.darkmode-toggle',
+            ]
+        );
+
+        $this->add_control(
+            'icon_border_radius',
+            [
+                'label' => __('Border Radius', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '.darkmode-toggle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_toggle_button');
+
+        $this->start_controls_tab(
+            'toggle_button_day_mode',
+            [
+                'label' => __('Day Mode', 'bdthemes-element-pack'),
+            ]
+        );
+
+
+
+        // $this->add_control(
+        //     'icon_color_day',
+        //     [
+        //         'label' => esc_html__('Icon Color', 'bdthemes-element-pack'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'default' => '#fff',
+        //         'selectors' => [
+        //             '.darkmode-toggle i' => 'color: {{VALUE}}',
+        //         ],
+        //     ]
+        // );
+
+        $this->add_control(
+            'day_mode_icon_background',
+            [
+                'label' => esc_html__('Icon Background', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#100f2c',
+                'selectors' => [
+                    '.darkmode-toggle' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'toggle_button_dark_mode',
+            [
+                'label' => __('Dark Mode', 'bdthemes-element-pack'),
+            ]
+        );
+
+
+        // $this->add_control(
+        //     'icon_color_dark',
+        //     [
+        //         'label' => esc_html__('Icon Color', 'bdthemes-element-pack'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'default' => '#000',
+        //         'selectors' => [
+        //             '.darkmode-toggle.darkmode-toggle--white i' => 'color: {{VALUE}}',
+        //         ],
+        //     ]
+        // );
+
+        $this->add_control(
+            'dark_mode_icon_background',
+            [
+                'label' => esc_html__('Icon Background', 'bdthemes-element-pack'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#fff',
+                'selectors' => [
+                    '.darkmode-toggle.darkmode-toggle--white' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
 		$this->end_controls_section();
 	}
 
 	protected function render(){
-		$settings = $this->get_settings_for_display();
-		echo '<div class="ldarkm_common_style ldarkm_'.$settings['ldarkm_presets_style'].'">';
-		?>
-			<nav class="ldarkm_dark_root">
-				<ul>
-					<li>
-						<div class="dark-button button_action"><?php echo $settings['ldarkm_main_title_dark']; 
-							\Elementor\Icons_Manager::render_icon( $settings['ldarkm_dark_icons'], [ 'aria-hidden' => 'true' ] );?>
-							</div>
-					</li>
-					<li>
-						<div class="light-button button_action" hidden="hidden"><?php echo $settings['ldarkm_main_title_light']; 
-							\Elementor\Icons_Manager::render_icon( $settings['ldarkm_light_icons'], [ 'aria-hidden' => 'true' ] );?>
-							</div>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<?php
+
+        $settings = $this->get_settings_for_display();
+		echo 'Name here';
+
+        ?>
+
+
+    <?php
 	}
 }
